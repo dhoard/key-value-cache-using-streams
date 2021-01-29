@@ -15,16 +15,18 @@ public class SampleProcessor implements Processor<String, String> {
 
     private TimestampedWindowStore timestampedWindowStore;
 
+    public final static String STATE_STORE_NAME = "key-value-window-store";
+
     @Override
     public void init(ProcessorContext processorContext) {
         this.processorContext = processorContext;
         this.timestampedWindowStore =
-            (TimestampedWindowStore) this.processorContext.getStateStore("key-store");
+            (TimestampedWindowStore) this.processorContext.getStateStore(STATE_STORE_NAME);
     }
 
     @Override
     public void process(String key, String value) {
-        LOGGER.info("process(" + key + ", " + value + ")");
+        //LOGGER.info("process(" + key + ", " + value + ")");
 
         long timeMilliseconds = System.currentTimeMillis();
         this.timestampedWindowStore.put(key, ValueAndTimestamp.make(value, timeMilliseconds), timeMilliseconds);

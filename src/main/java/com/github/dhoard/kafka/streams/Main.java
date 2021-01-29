@@ -25,7 +25,7 @@ public class Main {
         LOGGER.info("Application starting");
 
         String bootstrapServers = "cp-5-5-x.address.cx:9092";
-        String applicationId = "key-value-cache-using-streams";
+        String applicationId = "key-value-cache-using-streams-1";
         Class keySerde = Serdes.String().getClass();
         Class valueSerde = Serdes.String().getClass();
         String autoOffsetResetConfig = "earliest";
@@ -36,7 +36,7 @@ public class Main {
 
         StoreBuilder storeBuilder = Stores.timestampedWindowStoreBuilder(
             Stores.persistentTimestampedWindowStore(
-                "key-value-window-store",
+                SampleProcessor.STATE_STORE_NAME,
                 Duration.of(14, ChronoUnit.DAYS),
                 Duration.of(14, ChronoUnit.DAYS),
                 true),
