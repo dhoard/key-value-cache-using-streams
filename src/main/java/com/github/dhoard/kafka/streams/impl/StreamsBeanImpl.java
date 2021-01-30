@@ -52,6 +52,10 @@ public class StreamsBeanImpl implements StreamsBean {
             "default.deserialization.exception.handler", LogAndContinueExceptionHandler.class);
         this.properties.put(StreamsConfig.DEFAULT_TIMESTAMP_EXTRACTOR_CLASS_CONFIG,
             WallclockTimestampExtractor.class);
+        this.properties.put(StreamsConfig.NUM_STREAM_THREADS_CONFIG, 8);
+        this.properties.put(StreamsConfig.CACHE_MAX_BYTES_BUFFERING_CONFIG, 1);
+        this.properties.put(StreamsConfig.CACHE_MAX_BYTES_BUFFERING_CONFIG, 10 * 1024 * 1024L);
+        this.properties.put(StreamsConfig.COMMIT_INTERVAL_MS_CONFIG, 1000);
 
         this.processor = processor;
         this.topology = topology;
