@@ -1,6 +1,6 @@
-package com.github.dhoard.kafka.streams.impl;
+package com.github.dhoard.http.impl;
 
-import com.github.dhoard.kafka.streams.HttpServerBean;
+import com.github.dhoard.http.HttpServerBean;
 import com.github.dhoard.util.ThrowableUtil;
 import javax.servlet.Servlet;
 import org.eclipse.jetty.server.Connector;

@@ -1,7 +1,6 @@
-package com.github.dhoard.kafka.streams;
+package com.github.dhoard.http;
 
-import com.github.dhoard.kafka.streams.StreamsBean.Builder;
-import com.github.dhoard.kafka.streams.impl.HttpServerBeanImpl;
+import com.github.dhoard.http.impl.HttpServerBeanImpl;
 import javax.servlet.Servlet;
 
 public interface HttpServerBean {

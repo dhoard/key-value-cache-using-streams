@@ -1,14 +1,5 @@
 package com.github.dhoard.kafka.streams;
 
-import com.github.dhoard.kafka.streams.impl.SampleProcessor;
-import java.io.IOException;
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.apache.kafka.streams.KeyValue;
 import org.apache.kafka.streams.state.ValueAndTimestamp;
 import org.apache.kafka.streams.state.WindowStore;
@@ -16,16 +7,21 @@ import org.apache.kafka.streams.state.WindowStoreIterator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+
 public class APIServlet extends HttpServlet {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(APIServlet.class);
 
-    private StreamsBean streamsBean;
-
-    public APIServlet(StreamsBean streamsBean) {
+    public APIServlet() {
         super();
-
-        this.streamsBean = streamsBean;
     }
 
     @Override
@@ -44,7 +40,9 @@ public class APIServlet extends HttpServlet {
         int status = HttpServletResponse.SC_NOT_FOUND;
         String message = "{ \"status\": 404, \"message\": \"NOT_FOUND\"}";
 
-        SampleProcessor sampleProcessor = (SampleProcessor) this.streamsBean.getProcessor();
+        /*
+        //this.streamsBean.getKafkaStreams().queryMetadataForKey(key, new StringSerializer());
+        StreamsMetadata streamsMetadata = null;
         WindowStore<String, ValueAndTimestamp<String>> windowStore = sampleProcessor.getTimestampedWindowStore();
 
         WindowStoreIterator<ValueAndTimestamp<String>> windowStoreIterator =
@@ -58,6 +56,7 @@ public class APIServlet extends HttpServlet {
         }
 
         windowStoreIterator.close();
+         */
 
         setNoCache(httpServletResponse);
         httpServletResponse.setStatus(status);
@@ -66,7 +65,7 @@ public class APIServlet extends HttpServlet {
 
     @Override
     public void destroy() {
-        this.streamsBean = null;
+        // DO NOTHING
     }
 
     private void setNoCache(HttpServletResponse httpServletResponse) {

@@ -1,18 +1,16 @@
-package com.github.dhoard.kafka.streams.impl;
+package com.github.dhoard.kafka.streams;
 
 import org.apache.kafka.streams.processor.Processor;
 import org.apache.kafka.streams.processor.ProcessorSupplier;
 
 public class SampleProcessSupplier implements ProcessorSupplier {
 
-    private Processor processor;
-
-    public SampleProcessSupplier(Processor processor) {
-        this.processor = processor;
+    public SampleProcessSupplier() {
+        // DO NOTHING
     }
 
     @Override
     public Processor get() {
-        return this.processor;
+        return new SampleProcessor();
     }
 }
