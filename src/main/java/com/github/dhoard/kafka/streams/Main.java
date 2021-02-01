@@ -33,11 +33,12 @@ public class Main {
         Class keySerde = Serdes.String().getClass();
         Class valueSerde = Serdes.String().getClass();
         String autoOffsetResetConfig = "earliest";
-        String topicName = "test";
-        int numStreamThreads = 8;
-        long commitIntervalMS = 100;
-        long cacheMaxBytesBuffering = 10 * 10240L;
-        String stateDir = "C:/temp/data";
+        String topicName = "test_single_partition";
+        topicName = "test";
+        int numStreamThreads = 10;
+        long commitIntervalMS = 30000;
+        long cacheMaxBytesBuffering = 16 * 1024 * 1024L;
+        String stateDir = "/mnt/sdb";
 
         LOGGER.info("bootstrapServers       = [" + bootstrapServers + "]");
         LOGGER.info("autoOffsetResetConfig  = [" + autoOffsetResetConfig + "]");

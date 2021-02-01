@@ -2,6 +2,7 @@ package com.github.dhoard.kafka.streams;
 
 import org.apache.kafka.streams.processor.Processor;
 import org.apache.kafka.streams.processor.ProcessorContext;
+import org.apache.kafka.streams.state.ValueAndTimestamp;
 import org.apache.kafka.streams.state.TimestampedWindowStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -63,7 +64,7 @@ public class SampleProcessor implements Processor<String, String> {
         }
         */
 
-        //this.timestampedWindowStore.put(key, ValueAndTimestamp.make(value, timeMilliseconds), timeMilliseconds);
+        this.timestampedWindowStore.put(key, ValueAndTimestamp.make(value, timeMilliseconds), timeMilliseconds);
     }
 
     @Override
