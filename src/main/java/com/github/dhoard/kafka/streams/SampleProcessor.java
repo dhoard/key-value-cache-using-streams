@@ -51,7 +51,6 @@ public class SampleProcessor implements Processor<String, String> {
 
     @Override
     public void process(String key, String value) {
-        //LOGGER.info("process(" + key + ", " + value + ")");
         long timeMilliseconds = System.currentTimeMillis();
 
         /*

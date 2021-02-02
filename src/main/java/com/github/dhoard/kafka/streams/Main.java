@@ -29,15 +29,15 @@ public class Main {
         LOGGER.info("Application starting");
 
         String bootstrapServers = "cp-5-5-x.address.cx:9092";
-        String applicationId = "key-value-cache-using-streams";
+        String applicationId = "key-value-cache-using-streams-x";
         Class keySerde = Serdes.String().getClass();
         Class valueSerde = Serdes.String().getClass();
         String autoOffsetResetConfig = "earliest";
         String topicName = "test_single_partition";
-        topicName = "test";
-        int numStreamThreads = 10;
-        long commitIntervalMS = 30000;
-        long cacheMaxBytesBuffering = 16 * 1024 * 1024L;
+        topicName = "test_28";
+        int numStreamThreads = Runtime.getRuntime().availableProcessors() * 2;
+        long commitIntervalMS = 15000;
+        long cacheMaxBytesBuffering = 32 * 1024 * 1024L;
         String stateDir = "/mnt/sdb";
 
         LOGGER.info("bootstrapServers       = [" + bootstrapServers + "]");
@@ -86,6 +86,7 @@ public class Main {
         properties.put(StreamsConfig.ROCKSDB_CONFIG_SETTER_CLASS_CONFIG, CustomRocksDBConfig.class);
 
         KafkaStreams kafkaStreams = new KafkaStreams(topology, properties);
+
         kafkaStreams.start();
 
         while (true) {

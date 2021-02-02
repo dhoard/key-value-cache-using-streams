@@ -12,7 +12,7 @@ public class CustomRocksDBConfig implements RocksDBConfigSetter {
 
     public static long BLOCK_CACHE_SIZE = 128 * 1024 * 1024L;
 
-    public static long BLOCK_SIZE = 32 * 1024L;
+    public static long BLOCK_SIZE = 32 * 1024 * 1024L;
 
     public static long WRITE_BUFFER_SIZE = 128 * 1024 * 1024;
 
